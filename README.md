@@ -1,4 +1,3 @@
-
 # Web Development Learning Journal
 
 * An interactive learning journal documenting my journey into full-stack web development.
