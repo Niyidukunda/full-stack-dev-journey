@@ -59,8 +59,50 @@ Deploying the project taught me the basics of hosting static sites and using Git
 
 The Simon Game was inspired by concepts and projects from The Complete Full-Stack Web Development Bootcamp by Dr. Angela Yu.
 
-* Troubleshooting
+To avoid the “unrelated histories” issue in the future, here’s the golden rule:
+Start your GitHub repo empty if you plan to push from local
 
-If the game does not load correctly, ensure your browser supports modern JavaScript features and check for any missing assets in the repository.ts with the cluster accordingly.
+When creating a new repo on GitHub, do not check any of the following:
+
+“Add a README file”
+
+“Add a .gitignore”
+
+“Add a license”
+
+This ensures the remote repo has no commits and is ready to receive your local commit history cleanly.
+
+💡 Alternative approach (if you want GitHub to generate files first)
+
+If you do check “Add README” or other files on GitHub:
+
+Clone the repo locally instead of initializing a new local Git repo from scratch
+
+git clone https://github.com/your-username/your-repo.git
+
+Then add and commit your changes
+
+git add .
+git commit -m "Add local content"
+git push
+
+This way, your local repo shares the same history from the beginning.
+
+What happened in my case
+
+I created the repo on GitHub with a README, then initialized a local repo separately. So Git saw two different starting points — one on GitHub, one local — and refused to merge them unless I explicitly told it that I wanted to allow unrelated histories.
+
+To resolve this, I ran:
+
+git pull origin main --allow-unrelated-histories
+
+This command merged the remote README with my local commits, preserving both histories.
+
+After the merge, I pushed the combined history back to GitHub:
+
+git push -u origin main
+
+This process ensured that my local and remote repositories were synchronized without losing any commits.
+
 
 
